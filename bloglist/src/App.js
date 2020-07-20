@@ -1,11 +1,27 @@
-import React,{useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import LogIn from './components/LogIn'
 import Notification from './components/Notification'
+import Profile from './components/Profile'
+
+
+import userService from './services/users'
+import NewBlog from './components/NewBlog'
 
 function App() {
     const [notification, setNotification] = useState(null);
     const [user, setUser] = useState(null)
+
+
+    useEffect(() => {
+        const id = window.localStorage.getItem('id')
+        const token = window.localStorage.getItem('token')
+
+        if (id && token) {
+            setSession(id, token)
+        }
+    }, []);
+
 
     const info = (info) => {
         setNotification({text: info, type: 'info'});
@@ -19,13 +35,39 @@ function App() {
 
     const display = {info, error}
 
+    const setSession = async (id, token) => {
+        let user = await userService.getById(id)
+        user.token = token
 
-    return (
-        <div>
-            <Notification message={notification}/>
-            <LogIn display={display}/>
-        </div>
-    )
+        window.localStorage.setItem('id', id)
+        window.localStorage.setItem('token', token)
+        setUser(user)
+    }
+
+    const endSession = async () => {
+        window.localStorage.removeItem('id')
+        window.localStorage.removeItem('token')
+
+        setUser(null)
+        info("Successfully logged out")
+    }
+
+    if (!user) {
+        return (
+            <div>
+                <Notification message={notification}/>
+                <LogIn display={display} setSession={setSession}/>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                <Notification message={notification}/>
+                <Profile user={user} logOut={endSession}/>
+                <NewBlog user={user} display={display}/>
+            </div>
+        )
+    }
 }
 
 export default App

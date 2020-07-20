@@ -18,7 +18,7 @@ const LogIn = (props) => {
         try {
             const res = await logInService.auth(newUser)
 
-            props.setSession(res)
+            props.setSession(res.user.id, res.token)
             display.info("Successfully logged in")
         } catch (err) {
             display.error("Failed to log in, password or username incorrect")

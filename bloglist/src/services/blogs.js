@@ -21,11 +21,15 @@ export default {
             throw err
         }
     },
-    create: async (newBlog) => {
+    create: async (newBlog, token) => {
         try {
             logger.info(extension, 'Creating blog', newBlog)
 
-            const res = await axios.post(baseUrl, newBlog)
+            const res = await axios.post(baseUrl, newBlog, {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            })
 
             logger.info(extension, 'Blog created', res)
 
