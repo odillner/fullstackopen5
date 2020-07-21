@@ -5,9 +5,9 @@ const LogIn = (props) => {
     const [nameInput, setNameInput] = useState('')
     const [passwordInput, setPasswordInput] = useState('')
 
-    const display = props.display
+    const {info, error} = props.display
 
-    const logInUser = async (event) => {
+    const logIn = async (event) => {
         event.preventDefault()
 
         const newUser = {
@@ -19,18 +19,18 @@ const LogIn = (props) => {
             const res = await logInService.auth(newUser)
 
             props.setSession(res.user.id, res.token)
-            display.info("Successfully logged in")
+            info('Successfully logged in')
         } catch (err) {
-            display.error("Failed to log in, password or username incorrect")
+            error('Failed to log in, password or username incorrect')
         }
         setNameInput('')
         setPasswordInput('')
     }
-    
+
     const handleNameForm = (event) => {
         setNameInput(event.target.value)
     }
-    
+
     const handlePasswordForm = (event) => {
         setPasswordInput(event.target.value)
     }
@@ -45,7 +45,7 @@ const LogIn = (props) => {
                     password: <input value={passwordInput} onChange={handlePasswordForm}/>
                 </div>
                 <div>
-                    <button type="submit" onClick={logInUser}>Log In</button>
+                    <button type="submit" onClick={logIn}>Log In</button>
                 </div>
             </form>
         </div>

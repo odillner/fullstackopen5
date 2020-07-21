@@ -1,5 +1,5 @@
 /* used as a central module for all logging */
-module.exports = {
+export default {
     info: (...params) => {
         if (process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'production') {
             console.log(...params)

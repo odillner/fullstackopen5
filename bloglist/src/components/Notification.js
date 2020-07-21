@@ -1,15 +1,15 @@
-import React from 'react';
+import React from 'react'
 
 const Notification = (props) => {
     if (props.message === null) {
-      return null
+        return null
     }
-  
-    return (
-      <div className={props.message.type}>
-        {props.message.text}
-      </div>
-    )
-  }
 
-export default Notification;
+    return (
+        <div className={props.message.type}>
+            {props.message.text}
+        </div>
+    )
+}
+
+export default Notification

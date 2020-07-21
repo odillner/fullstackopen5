@@ -21,7 +21,7 @@ export default {
             throw err
         }
     },
-    create: async (newUser) => {    
+    create: async (newUser) => {
         try {
             logger.info(extension, 'Creating user', newUser)
 

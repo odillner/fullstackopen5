@@ -4,6 +4,6 @@ if (process.env.NODE_ENV === 'production') {
     API_URL = '/'
 }
 
-module.exports = {
+export {
     API_URL
 }

@@ -9,9 +9,8 @@ import userService from './services/users'
 import NewBlog from './components/NewBlog'
 
 function App() {
-    const [notification, setNotification] = useState(null);
+    const [notification, setNotification] = useState(null)
     const [user, setUser] = useState(null)
-
 
     useEffect(() => {
         const id = window.localStorage.getItem('id')
@@ -20,20 +19,21 @@ function App() {
         if (id && token) {
             setSession(id, token)
         }
-    }, []);
+    }, [])
 
 
     const info = (info) => {
-        setNotification({text: info, type: 'info'});
+        setNotification({text: info, type: 'info'})
         setTimeout(() => {setNotification(null)}, 5000)
     }
 
     const error = (error) => {
-        setNotification({text: error, type: 'error'});
+        setNotification({text: error, type: 'error'})
         setTimeout(() => {setNotification(null)}, 5000)
     }
 
     const display = {info, error}
+    const state = {user, setUser}
 
     const setSession = async (id, token) => {
         let user = await userService.getById(id)
@@ -49,22 +49,22 @@ function App() {
         window.localStorage.removeItem('token')
 
         setUser(null)
-        info("Successfully logged out")
+        info('Successfully logged out')
     }
 
     if (!user) {
         return (
             <div>
                 <Notification message={notification}/>
-                <LogIn display={display} setSession={setSession}/>
+                <LogIn state={state} display={display} setSession={setSession}/>
             </div>
         )
     } else {
         return (
             <div>
                 <Notification message={notification}/>
-                <Profile user={user} logOut={endSession}/>
-                <NewBlog user={user} display={display}/>
+                <Profile state={state} display={display} endSession={endSession}/>
+                <NewBlog state={state} display={display}/>
             </div>
         )
     }

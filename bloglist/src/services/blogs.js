@@ -53,11 +53,15 @@ export default {
             throw err
         }
     },
-    remove: async (id) => {
+    remove: async (id, token) => {
         try {
             logger.info(extension, 'Deleting blog', id)
 
-            const res = await axios.delete(baseUrl + id)
+            const res = await axios.delete(baseUrl + id, {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            })
 
             logger.info(extension, 'Blog deleted', res)
 
@@ -67,11 +71,15 @@ export default {
             throw err
         }
     },
-    update: async (id, newBlog) => {
+    update: async (id, newBlog, token) => {
         try {
             logger.info(extension, 'Updating blog', id, newBlog)
 
-            const res = await axios.put(`${baseUrl}${id}`, newBlog)
+            const res = await axios.put(`${baseUrl}${id}`, newBlog, {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            })
 
             logger.info(extension, 'Blog updated', res)
 
