@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Blogs from './Blogs'
 import Togglable from './Togglable'
@@ -27,6 +28,11 @@ const Profile = (props) => {
     return (
         <div/>
     )
+}
+
+Profile.propTypes = {
+    state: PropTypes.object.isRequired,
+    display: PropTypes.object.isRequired,
 }
 
 export default Profile

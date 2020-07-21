@@ -1,34 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-import Toggleble from './Togglable'
+import Blog from './Blog'
+
 import blogService from '../services/blogs'
 
-const Blog = (props) => {
-    const blog = props.blog
-
-    if (blog) {
-        return (
-            <div>
-                <p>author: {blog.author} </p>
-                <p>url: {blog.url} </p>
-                <p>likes: {blog.likes}
-                    <button onClick={() => props.like(blog)}>
-                    Like
-                    </button>
-                </p>
-                <p>owner id: {blog.user} </p>
-                <p>blog id: {blog.id} </p>
-                <button onClick={() => props.remove(blog)}>
-                    Remove
-                </button>
-            </div>
-        )
-    }
-
-    return (
-        <div/>
-    )
-}
 
 const Blogs = (props) => {
     const {user, setUser} = props.state
@@ -82,11 +58,7 @@ const Blogs = (props) => {
             <div className="wrapper">
                 {blogs.map(blog => {
                     return (
-                        <div className='blog' key={blog.id}>
-                            <p>{blog.title}</p><Toggleble show="view" hide="hide">
-                                <Blog blog={blog} like={likeBlog} remove={removeBlog}/>
-                            </Toggleble>
-                        </div>
+                        <Blog blog={blog} like={likeBlog} remove={removeBlog} key={blog.id}/>
                     )
                 })}
             </div>
@@ -98,5 +70,9 @@ const Blogs = (props) => {
     )
 }
 
+Blogs.propTypes = {
+    state: PropTypes.object.isRequired,
+    display: PropTypes.object.isRequired,
+}
 
 export default Blogs

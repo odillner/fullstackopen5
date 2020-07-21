@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import PropTypes from 'prop-types'
+
 import logInService from '../services/login'
 
 const LogIn = (props) => {
@@ -36,7 +38,7 @@ const LogIn = (props) => {
     }
 
     return (
-        <div>
+        <div className="logInForm">
             <form>
                 <div>
                     name: <input value={nameInput} onChange={handleNameForm}/>
@@ -50,6 +52,11 @@ const LogIn = (props) => {
             </form>
         </div>
     )
+}
+
+LogIn.propTypes = {
+    setSession: PropTypes.func.isRequired,
+    display: PropTypes.object.isRequired,
 }
 
 export default LogIn

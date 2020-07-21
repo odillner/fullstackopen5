@@ -1,9 +1,10 @@
 import React, {useState, useRef} from 'react'
+import PropTypes from 'prop-types'
+
 import blogService from '../services/blogs'
 
 import Toggleble from './Togglable'
 
-/*snow ball creation page*/
 const NewBlog = (props) => {
     const [titleInput, setTitleInput] = useState('')
     const [authorInput, setAuthorInput] = useState('')
@@ -82,6 +83,11 @@ const NewBlog = (props) => {
             log in to create blog
         </div>
     )
+}
+
+NewBlog.propTypes = {
+    state: PropTypes.object.isRequired,
+    display: PropTypes.object.isRequired,
 }
 
 export default NewBlog
