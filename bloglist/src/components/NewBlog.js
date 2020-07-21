@@ -61,16 +61,37 @@ const NewBlog = (props) => {
                 <Toggleble show="Create new blog" hide="Cancel" ref={toggleRef}>
                     <form>
                         <div>
-                            title: <input value={titleInput} onChange={handleTitleForm}/>
+                            title:
+                            <input
+                                id="title-input"
+                                value={titleInput}
+                                onChange={handleTitleForm}
+                            />
                         </div>
                         <div>
-                            author: <input value={authorInput} onChange={handleAuthorForm}/>
+                            author:
+                            <input
+                                id="author-input"
+                                value={authorInput}
+                                onChange={handleAuthorForm}
+                            />
                         </div>
                         <div>
-                            url: <input value={urlInput} onChange={handleUrlForm}/>
+                            url:
+                            <input
+                                id="url-input"
+                                value={urlInput}
+                                onChange={handleUrlForm}
+                            />
                         </div>
                         <div>
-                            <button type="submit" onClick={createBlog}>Create Blog</button>
+                            <button
+                                id="new-blog-button"
+                                type="submit"
+                                onClick={createBlog}
+                            >
+                                Create Blog
+                            </button>
                         </div>
                     </form>
                 </Toggleble>

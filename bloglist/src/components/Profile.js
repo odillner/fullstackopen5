@@ -10,7 +10,7 @@ const Profile = (props) => {
     if (user) {
         return (
             <div className='profile'>
-                <button onClick={props.endSession}>
+                <button id="logout-button" onClick={props.endSession}>
                     Log Out
                 </button>
                 <h1>profile</h1>

@@ -2,8 +2,12 @@ module.exports = {
     'env': {
         'browser': true,
         'es2020': true,
-        'jest': true
+        'jest': true,
+        "cypress/globals": true
     },
+    "plugins": [
+        "react", "jest", "cypress"
+    ],
     "extends": [ 
         "eslint:recommended",
         "plugin:react/recommended"

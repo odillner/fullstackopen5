@@ -41,13 +41,25 @@ const LogIn = (props) => {
         <div className="logInForm">
             <form>
                 <div>
-                    name: <input value={nameInput} onChange={handleNameForm}/>
+                    name:
+                    <input
+                        id="username-input"
+                        value={nameInput}
+                        onChange={handleNameForm}
+                    />
                 </div>
                 <div>
-                    password: <input value={passwordInput} onChange={handlePasswordForm}/>
+                    password:
+                    <input
+                        id="password-input"
+                        value={passwordInput}
+                        onChange={handlePasswordForm}
+                    />
                 </div>
                 <div>
-                    <button type="submit" onClick={logIn}>Log In</button>
+                    <button id="login-button" type="submit" onClick={logIn}>
+                        Log In
+                    </button>
                 </div>
             </form>
         </div>

@@ -55,6 +55,7 @@ function App() {
     if (!user) {
         return (
             <div>
+                <h1>Bloglist</h1>
                 <Notification message={notification}/>
                 <LogIn state={state} display={display} setSession={setSession}/>
             </div>
@@ -62,6 +63,7 @@ function App() {
     } else {
         return (
             <div>
+                <h1>Bloglist</h1>
                 <Notification message={notification}/>
                 <Profile state={state} display={display} endSession={endSession}/>
                 <NewBlog state={state} display={display}/>

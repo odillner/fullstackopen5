@@ -10,7 +10,7 @@ const Blogs = (props) => {
     const {user, setUser} = props.state
     const {info, error} = props.display
 
-    const blogs = user.blogs.sort((a,b) => a['title'].localeCompare(b['title']))
+    const blogs = user.blogs.sort((a,b) => b.likes - a.likes)
 
     const likeBlog = async (blog) => {
         const newBlog = {
@@ -55,7 +55,7 @@ const Blogs = (props) => {
 
     if (blogs[0]) {
         return (
-            <div className="wrapper">
+            <div className="wrapper" id="blog-list">
                 {blogs.map(blog => {
                     return (
                         <Blog blog={blog} like={likeBlog} remove={removeBlog} key={blog.id}/>

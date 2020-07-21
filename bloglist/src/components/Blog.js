@@ -13,14 +13,14 @@ const Blog = (props) => {
             <p>author: {blog.author} </p>
             <Toggleble show="view" hide="hide">
                 <p>url: {blog.url} </p>
-                <p>likes: {blog.likes}
-                    <button onClick={() => props.like(blog)}>
+                <p className="likes">likes: {blog.likes}
+                    <button id="like-button" onClick={() => props.like(blog)}>
                     Like
                     </button>
                 </p>
                 <p>owner id: {blog.user} </p>
                 <p>blog id: {blog.id} </p>
-                <button onClick={() => props.remove(blog)}>
+                <button id="remove-button" onClick={() => props.remove(blog)}>
                     Remove
                 </button>
             </Toggleble>
