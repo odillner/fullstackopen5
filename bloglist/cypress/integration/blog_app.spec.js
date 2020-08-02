@@ -2,12 +2,19 @@ describe('Blog app', function() {
     beforeEach(function() {
         cy.request('POST', 'http://localhost:3004/api/testing/reset')
 
-        const user = {
+        const user1 = {
             username: 'username1',
             password: 'password1'
         }
 
-        cy.request('POST', 'http://localhost:3004/api/users/', user)
+        const user2 = {
+            username: 'username2',
+            password: 'password2'
+        }
+
+
+        cy.request('POST', 'http://localhost:3004/api/users/', user1)
+        cy.request('POST', 'http://localhost:3004/api/users/', user2)
 
         cy.visit('http://localhost:3000')
     })

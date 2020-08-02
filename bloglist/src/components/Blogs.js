@@ -7,10 +7,10 @@ import blogService from '../services/blogs'
 
 
 const Blogs = (props) => {
-    const {user, setUser} = props.state
+    const {user, setBlogs} = props.state
+    let blogs = props.state.blogs.sort((a,b) => b.likes - a.likes)
     const {info, error} = props.display
 
-    const blogs = user.blogs.sort((a,b) => b.likes - a.likes)
 
     const likeBlog = async (blog) => {
         const newBlog = {
@@ -22,12 +22,11 @@ const Blogs = (props) => {
         }
 
         try {
-            await blogService.update(blog.id, newBlog, user.token)
+            await blogService.update(blog.id, newBlog)
 
             blog.likes++
 
-            user.blogs = blogs
-            setUser(user)
+            setBlogs(blogs)
 
             info('Blog successfully liked')
         } catch (err) {
@@ -43,8 +42,8 @@ const Blogs = (props) => {
         try {
             await blogService.remove(removedBlog.id, user.token)
 
-            user.blogs = user.blogs.filter(blog => blog.id != removedBlog.id)
-            setUser(user)
+            blogs = blogs.filter(blog => blog.id != removedBlog.id)
+            setBlogs(blogs)
 
             info('Blog successfully deleted')
         } catch (err) {
@@ -58,7 +57,7 @@ const Blogs = (props) => {
             <div className="wrapper" id="blog-list">
                 {blogs.map(blog => {
                     return (
-                        <Blog blog={blog} like={likeBlog} remove={removeBlog} key={blog.id}/>
+                        <Blog blog={blog} user={user} like={likeBlog} remove={removeBlog} key={blog.id}/>
                     )
                 })}
             </div>

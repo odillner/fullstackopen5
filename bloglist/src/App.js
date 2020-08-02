@@ -3,14 +3,16 @@ import React, {useState, useEffect} from 'react'
 import LogIn from './components/LogIn'
 import Notification from './components/Notification'
 import Profile from './components/Profile'
-
+import NewBlog from './components/NewBlog'
 
 import userService from './services/users'
-import NewBlog from './components/NewBlog'
+import blogService from './services/blogs'
+
 
 function App() {
     const [notification, setNotification] = useState(null)
     const [user, setUser] = useState(null)
+    const [blogs, setBlogs] = useState([])
 
     useEffect(() => {
         const id = window.localStorage.getItem('id')
@@ -33,15 +35,20 @@ function App() {
     }
 
     const display = {info, error}
-    const state = {user, setUser}
+    const state = {user, setUser, blogs, setBlogs}
 
     const setSession = async (id, token) => {
-        let user = await userService.getById(id)
-        user.token = token
+        let newUser = await userService.getById(id)
+        newUser.token = token
+
+        setUser(newUser)
 
         window.localStorage.setItem('id', id)
         window.localStorage.setItem('token', token)
-        setUser(user)
+
+        const newBlogs = await blogService.getAll()
+
+        setBlogs(newBlogs)
     }
 
     const endSession = async () => {

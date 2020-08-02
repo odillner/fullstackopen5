@@ -6,7 +6,7 @@ import Blog from '../../components/Blog'
 import testHelper from '../test_helpers'
 
 describe('Blog', () => {
-    const {singleBlog} = testHelper
+    const {singleBlog, singleUser} = testHelper
 
     let mockHandler
 
@@ -16,7 +16,7 @@ describe('Blog', () => {
         mockHandler = jest.fn()
 
         component = render(
-            <Blog blog={singleBlog} like={mockHandler} remove={mockHandler}/>
+            <Blog blog={singleBlog} user={singleUser} like={mockHandler} remove={mockHandler}/>
         )
     })
 

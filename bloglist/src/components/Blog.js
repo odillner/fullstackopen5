@@ -5,7 +5,7 @@ import Toggleble from './Togglable'
 
 const Blog = (props) => {
     const blog = props.blog
-
+    const user = props.user
 
     return (
         <div className="blog">
@@ -18,11 +18,13 @@ const Blog = (props) => {
                     Like
                     </button>
                 </p>
-                <p>owner id: {blog.user} </p>
+                <p>owner id: {blog.user.id} </p>
                 <p>blog id: {blog.id} </p>
-                <button id="remove-button" onClick={() => props.remove(blog)}>
-                    Remove
-                </button>
+                {user.id === blog.user &&
+                    <button id="remove-button" onClick={() => props.remove(blog)}>
+                        Remove
+                    </button>
+                }
             </Toggleble>
         </div>
     )

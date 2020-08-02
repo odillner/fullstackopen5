@@ -12,7 +12,7 @@ const NewBlog = (props) => {
 
     const toggleRef = useRef()
 
-    const {user, setUser} = props.state
+    const {user, blogs, setBlogs} = props.state
     const {info, error} = props.display
 
     const createBlog = async (event) => {
@@ -28,8 +28,7 @@ const NewBlog = (props) => {
         try {
             const res = await blogService.create(newBlog, user.token)
 
-            user.blogs = user.blogs.concat(res)
-            setUser(user)
+            setBlogs(blogs.concat(res))
 
             info('Blog successfully created')
         } catch (err) {
